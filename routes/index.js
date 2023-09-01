@@ -15,4 +15,21 @@ router.post('/', function (req, res){
     textColor: req.body.textColorPicker
   })
 })
+
+/*Post random values and render original page */
+router.post('/random', function (req, res){
+  res.render('index', {
+    color: generateRandomHexCode(),
+    textColor: generateRandomHexCode()
+  })
+})
+function generateRandomHexCode() {
+  let hexCode = "#"
+  while ( hexCode.length < 7 ) {
+    hexCode += (Math.round(Math.random() * 15)).toString(16 )
+  }
+  return hexCode
+}
+
+
 module.exports = router;
